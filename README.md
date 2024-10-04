@@ -4,9 +4,10 @@
 ## Installation
 
 1. Clone project
+   - https://github.com/shahidhassan311/exchange-rates.git
    
 2. composer install
-   - php artisan install
+   - composer install
    
 3. Run the migration and seeder
    - php artisan migrate --seed

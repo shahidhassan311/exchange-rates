@@ -29,4 +29,19 @@ class CurrencyRepository implements CurrencyRepositoryInterface
         $currency = $this->currency->findOrFail($id);
         return $currency->history;
     }
+
+    public function firstOrCreate(array $attributes, array $values = [])
+    {
+        return $this->currency->firstOrCreate($attributes, $values);
+    }
+
+    public function update(array $attributes)
+    {
+        return $this->currency->update($attributes);
+    }
+
+    public function create(array $attributes)
+    {
+        return $this->currency->create($attributes);
+    }
 }

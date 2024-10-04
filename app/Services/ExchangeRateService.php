@@ -2,15 +2,18 @@
 
 namespace App\Services;
 
-namespace App\Services;
-
-use App\Models\Currency;
-use App\Models\CurrencyHistory;
 use Illuminate\Support\Facades\Http;
+use App\Repositories\Interfaces\CurrencyRepositoryInterface;
 
 class ExchangeRateService
 {
     protected $apiUrl = 'http://www.cbr.ru/scripts/XML_daily.asp';
+    protected $currencyRepository;
+
+    public function __construct(CurrencyRepositoryInterface $currencyRepository)
+    {
+        $this->currencyRepository = $currencyRepository;
+    }
 
     public function updateRates()
     {
@@ -22,7 +25,7 @@ class ExchangeRateService
                 $currencyName = (string) $valute->CharCode;
                 $rate = floatval(str_replace(',', '.', $valute->Value));
 
-                $currency = Currency::firstOrCreate(
+                $currency = $this->currencyRepository->firstOrCreate(
                     ['name' => $currencyName],
                     ['rate' => $rate]
                 );
@@ -30,8 +33,7 @@ class ExchangeRateService
                 if ($currency->rate != $rate) {
                     $currency->update(['rate' => $rate]);
 
-                    CurrencyHistory::create([
-                        'currency_id' => $currency->id,
+                    $currency->history()->create([
                         'rate' => $rate,
                         'changed_at' => now(),
                     ]);
@@ -40,4 +42,3 @@ class ExchangeRateService
         }
     }
 }
-

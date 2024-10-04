@@ -9,4 +9,10 @@ interface CurrencyRepositoryInterface
     public function find($id);
 
     public function getHistory($id);
+
+    public function firstOrCreate(array $attributes, array $values = []);
+
+    public function update(array $attributes);
+
+    public function create(array $attributes);
 }
