@@ -14,6 +14,11 @@
 
 4. Run cron job for storing currency data
    - php artisan exchange:update
+
+5. Replace the bearer token in `resources/views/welcome` with the token retrieved from the user table.
+
+6. Run Project
+   - php artisan serve
    ```
 ```markdown
 ## Features
