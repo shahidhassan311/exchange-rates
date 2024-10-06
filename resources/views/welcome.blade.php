@@ -24,7 +24,7 @@
         </tbody>
     </table>
 
-    <nav>
+    <nav class="pt-5">
         <ul class="pagination" id="pagination-controls"></ul>
     </nav>
 </div>

@@ -42,3 +42,8 @@
 - Get Currency History: `GET /api/currencies/{id}/history`
 ```
 
+## Project Overview
+
+![Currency API Overview](https://i.imgur.com/yEfu9tz.png)
+![Currency API Overview](https://i.imgur.com/ecJTtg2.png)
+![Currency API Overview](https://i.imgur.com/I0DAatN.png)

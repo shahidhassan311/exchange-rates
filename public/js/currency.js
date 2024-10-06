@@ -86,8 +86,20 @@ function fetchCurrencyHistory(currencyId) {
         success: function(history) {
             let historyItems = '';
             history.forEach(function(entry) {
-                historyItems += `<li>${entry.date}: ${entry.rate}</li>`;
+                // Parse the date and format it
+                let date = new Date(entry.created_at);
+                let formattedDate = date.toLocaleDateString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                // Build the history item
+                historyItems += `<li>${formattedDate}: ${entry.rate}</li>`;
             });
+            // Set the formatted history items to the list
             $('#currency-history-list').html(historyItems);
             $('#currencyHistoryModal').modal('show');
         },
@@ -96,6 +108,7 @@ function fetchCurrencyHistory(currencyId) {
         }
     });
 }
+
 
 // Debounce function to limit API calls
 let debounceTimer;
